@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "production": "webpack -p",
+    "lint": "eslint app/.; exit 0",
+    "fix": "eslint --fix app/.; exit 0"
   },
   "author": "",
   "license": "",
