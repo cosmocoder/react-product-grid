@@ -2,9 +2,11 @@ var path = require('path')
 var HTMLWebpackPlugin = require('html-webpack-plugin')
 
 var PATHS = {
-    app: path.join(__dirname, 'app'),
+    app: path.join(__dirname, 'static'),
     build: path.join(__dirname, 'dist')
 }
+
+var PORT = (process.env.PORT + 1) || 8080;
 
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     template: PATHS.app + '/index.html',
@@ -13,6 +15,15 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 })
 
 module.exports = {
+    devServer: {
+        proxy: {
+            '*' : {
+                target: 'http://localhost:8000'
+            }
+        },
+        port: PORT
+    },
+
     entry: [
         PATHS.app + '/index.js'
     ],

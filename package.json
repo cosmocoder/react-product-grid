@@ -5,7 +5,7 @@
   "description": "For all your ascii needs.",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "node . & webpack-dev-server",
     "production": "webpack -p",
     "lint": "eslint app/.; exit 0",
     "fix": "eslint --fix app/.; exit 0"
