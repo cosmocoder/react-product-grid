@@ -19,6 +19,7 @@
     "rules": {
         "no-console": [2, {allow: ["warn", "error"]}],
         "indent": [2, 4, {"SwitchCase": 1}],
+        "brace-style": [2, "stroustrup"],
         "jsx-quotes": [2, "prefer-single"],
         "react/jsx-boolean-value": [2, "always"],
         "react/jsx-closing-bracket-location": [2, {selfClosing: "after-props", nonEmpty: "after-props"}],
