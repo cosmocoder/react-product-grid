@@ -1,0 +1,27 @@
+img {
+   max-width: 100%;
+   height: auto;
+}
+
+article section {
+    margin-bottom: $spacing-double;
+}
+
+section {
+    figure {
+        margin-bottom: $spacing;
+
+        figcaption {
+            display: block;
+            margin-bottom: $spacing-half;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.embed-responsive {
+    margin-bottom: $spacing;
+}

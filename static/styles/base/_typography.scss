@@ -1,0 +1,12 @@
+html {
+	font-size: 87.5%;  // 14px
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+	font-family: $font-primary;
+	font-weight: $font-normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

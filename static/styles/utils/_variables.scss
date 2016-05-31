@@ -1,0 +1,58 @@
+//-------------------------------------//
+
+// GRID
+
+$grid-gutter: 30px;
+
+
+//-------------------------------------//
+
+// DIMENSIONS
+
+// screen sizes
+$width-lg: 1200px;
+$width-md: 992px;
+$width-sm: 768px;
+$width-xs: 480px;
+
+// navmenu height
+$height-navmenu: 50px;
+$border-width-navmenu: 1px;
+
+
+//-------------------------------------//
+
+// SPACING
+
+$spacing: 20px;
+$spacing-double: $spacing * 2;
+$spacing-third: $spacing * 3;
+$spacing-half: $spacing / 2;
+
+
+//-------------------------------------//
+
+// FONTS
+
+// fonts: base styles
+$font-primary: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-size-base: 14px;
+
+// fonts: weights
+$font-light: 300;
+$font-normal: 400;
+$font-medium: 500;
+$font-bold: 700;
+
+
+//-------------------------------------//
+
+// COLORS
+
+// colors: base font
+$color-font-base: #424242;
+
+// colors: primary
+$color-brand-1: #039BE5;  // blue
+$color-brand-2: #FFCC80;  // orange, #dc813f
+$blue-gray: #87a1b7;
