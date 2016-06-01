@@ -1,0 +1,128 @@
+@import '~styles/utils/variables';
+
+.products-menu {
+    background-color: $color-gallery-menu;
+    color: #fff;
+    // height: 64px;
+    // line-height: 64px;
+    width: 100%;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+    &.fixed {
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    &.scroll-end {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    li {
+        float: left;
+        padding: 0;
+        // line-height: 64px;
+        position: relative;
+        transition: background-color 300ms ease;
+
+        &:hover, &.active {
+            background-color: $color-gallery-menu-hover;
+        }
+    }
+
+    button {
+        font-size: 16px;
+        font-family: 'Roboto', sans-serif;
+        display: block;
+        text-transform: capitalize;
+        padding: 0 15px;
+        color: #fff;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+
+        span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    i {
+        font-size: 30px;
+        // line-height: 64px;
+        // height: 64px;
+        vertical-align: middle;
+        // display: block;
+
+        &.right {
+            margin-left: 10px;
+        }
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        z-index: 10;
+        width: 200px;
+        height: auto;
+        display: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+        -webkit-transform-origin: 0 0 !important;
+        -moz-transform-origin: 0 0 !important;
+        -ms-transform-origin: 0 0 !important;
+        -o-transform-origin: 0 0 !important;
+        transform-origin: 0 0 !important;
+
+        li {
+            background: #fff;
+            float: none;
+            width: 100%;
+            line-height: 1;
+
+            &:hover, &.active {
+                background: #ededed;
+            }
+        }
+
+        button {
+            color: $color-font-base;
+            padding: 15px;
+        }
+
+        li:hover button, li.active button {
+            color: $color-gallery-menu;
+        }
+    }
+
+    & > ul > li:hover .dropdown {
+        display: block;
+    }
+
+    &__sort .icon-sort {
+        display: none;
+    }
+
+    &.small &__sort {
+        span, .mdi-navigation-arrow-drop-down {
+            display: none;
+        }
+
+        .icon-sort {
+            display: block;
+        }
+    }
+}
