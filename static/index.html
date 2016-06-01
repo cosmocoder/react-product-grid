@@ -2,19 +2,139 @@
 <html>
     <head>
         <title>Discount Ascii Warehouse</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300,500" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://cdn.muicss.com/mui-0.6.0/css/mui.min.css" rel="stylesheet" />
     </head>
     <body>
         <header>
-            <h1>Discount Ascii Warehouse</h1>
+            <div class="mui-container">
+                <h1>Discount Ascii Warehouse</h1>
 
-            <p>Here you're sure to find a bargain on some of the finest ascii available to purchase. Be sure to peruse our selection of ascii faces in an exciting range of sizes and prices.</p>
+                <p>Here you're sure to find a bargain on some of the finest ascii available to purchase. Be sure to peruse our selection of ascii faces in an exciting range of sizes and prices.</p>
 
-            <p>But first, a word from our sponsors:</p> <script>document.write('<img class="ad" src="/ad/?r=' + Math.floor(Math.random()*1000) + '"/>');</script>
+                <p>But first, a word from our sponsors:</p> <script>document.write('<img class="ad" src="/ad/?r=' + Math.floor(Math.random()*1000) + '"/>');</script>
+            </div>
         </header>
 
         <section class="products">
-            ... products go here ...
-        </section>
+            <div class="mui-container">
+                <div class="mui-appbar products-menu">
+                    <ul>
+                        <li class="products-menu__sort dropdown-button">
+                            <button class="mui--appbar-line-height ripple-effect">
+                                <span>Sort</span>
+                                <i class="material-icons right">arrow_drop_down</i>
+                                <i class="material-icons icon-sort">sort</i>
+                            </button>
+                            <ul class="dropdown">
+                                <li class="active">
+                                    <button class="ripple-effect" data-sort="original">Original</button>
+                                </li>
+                                <li>
+                                    <button class="ripple-effect" data-sort="size">Size</button>
+                                </li>
+                                <li>
+                                    <button class="ripple-effect" data-sort="price">Price</button>
+                                </li>
+                                <li>
+                                    <button class="ripple-effect" data-sort="id">ID</button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>  <!-- /.products-menu -->
+
+                <div class="products-grid">
+                    <div class="mui-row">
+                        <div class="mui-col-xs-6 mui-col-s-4 mui-col-md-3 mui-col-lg-2 products-item">
+                            <div class="mui-panel">
+                                <div class="products-item__media">
+                                    <script>document.write('<img class="ad" src="/ad/?r=' + Math.floor(Math.random()*1000) + '"/>');</script>
+                                </div>
+                                <div class="products-item__content">
+                                    <h3 class="products-item__title">Item 1</h3>
+                                    <p class="products-item__size"><strong>Size:</strong> 16px</p>
+                                    <p class="products-item__price"><strong>Price:</strong> $3.51</p>
+                                    <p class="products-item__date"><strong>Date added:</strong> 3 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mui-col-xs-6 mui-col-s-4 mui-col-md-3 mui-col-lg-2 products-item">
+                            <div class="mui-panel">
+                                <div class="products-item__media">
+                                    <script>document.write('<img class="ad" src="/ad/?r=' + Math.floor(Math.random()*1000) + '"/>');</script>
+                                </div>
+                                <div class="products-item__content">
+                                    <h3 class="products-item__title">Item 2</h3>
+                                    <p class="products-item__size"><strong>Size:</strong> 16px</p>
+                                    <p class="products-item__price"><strong>Price:</strong> $3.51</p>
+                                    <p class="products-item__date"><strong>Date added:</strong> 3 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mui-col-xs-6 mui-col-s-4 mui-col-md-3 mui-col-lg-2 products-item">
+                            <div class="mui-panel">
+                                <div class="products-item__media">
+                                    <script>document.write('<img class="ad" src="/ad/?r=' + Math.floor(Math.random()*1000) + '"/>');</script>
+                                </div>
+                                <div class="products-item__content">
+                                    <h3 class="products-item__title">Item 3</h3>
+                                    <p class="products-item__size"><strong>Size:</strong> 16px</p>
+                                    <p class="products-item__price"><strong>Price:</strong> $3.51</p>
+                                    <p class="products-item__date"><strong>Date added:</strong> 3 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mui-col-xs-6 mui-col-s-4 mui-col-md-3 mui-col-lg-2 products-item">
+                            <div class="mui-panel">
+                                <div class="products-item__media">
+                                    <script>document.write('<img class="ad" src="/ad/?r=' + Math.floor(Math.random()*1000) + '"/>');</script>
+                                </div>
+                                <div class="products-item__content">
+                                    <h3 class="products-item__title">Item 3</h3>
+                                    <p class="products-item__size"><strong>Size:</strong> 16px</p>
+                                    <p class="products-item__price"><strong>Price:</strong> $3.51</p>
+                                    <p class="products-item__date"><strong>Date added:</strong> 3 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mui-col-xs-6 mui-col-s-4 mui-col-md-3 mui-col-lg-2 products-item">
+                            <div class="mui-panel">
+                                <div class="products-item__media">
+                                    <script>document.write('<img class="ad" src="/ad/?r=' + Math.floor(Math.random()*1000) + '"/>');</script>
+                                </div>
+                                <div class="products-item__content">
+                                    <h3 class="products-item__title">Item 3</h3>
+                                    <p class="products-item__size"><strong>Size:</strong> 16px</p>
+                                    <p class="products-item__price"><strong>Price:</strong> $3.51</p>
+                                    <p class="products-item__date"><strong>Date added:</strong> 3 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mui-col-xs-6 mui-col-s-4 mui-col-md-3 mui-col-lg-2 products-item">
+                            <div class="mui-panel">
+                                <div class="products-item__media">
+                                    <script>document.write('<img class="ad" src="/ad/?r=' + Math.floor(Math.random()*1000) + '"/>');</script>
+                                </div>
+                                <div class="products-item__content">
+                                    <h3 class="products-item__title">Item 3</h3>
+                                    <p class="products-item__size"><strong>Size:</strong> 16px</p>
+                                    <p class="products-item__price"><strong>Price:</strong> $3.51</p>
+                                    <p class="products-item__date"><strong>Date added:</strong> 3 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  <!-- /.products-grid -->
+
+            </div>
+        </section>  <!-- /.products -->
+
     </body>
 </html>

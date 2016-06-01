@@ -51,8 +51,8 @@ $font-bold: 700;
 
 // colors: base font
 $color-font-base: #424242;
+$color-font-secondary: #757575;
 
 // colors: primary
-$color-brand-1: #039BE5;  // blue
-$color-brand-2: #FFCC80;  // orange, #dc813f
-$blue-gray: #87a1b7;
+$color-gallery-menu: #039BE5;  // blue
+$color-gallery-menu-hover: darken($color-gallery-menu, 10%);  // blue
