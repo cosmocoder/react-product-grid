@@ -63,7 +63,8 @@ const developmentConfig = {
             }
         },
         port: PORT,
-        inline: true
+        inline: true,
+        progress: true
     },
 
     postcss: function () {
