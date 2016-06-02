@@ -1,6 +1,8 @@
 @import '~styles/utils/variables';
 
 .products-grid {
+    position: relative;
+    min-height: 200px;
     margin-left: -($spacing-half);
     margin-right: -($spacing-half);
     text-align: center;

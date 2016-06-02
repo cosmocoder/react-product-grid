@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Product } from 'components'
+import { Product, Loading } from 'components'
 import './styles.scss'
 
 ProductsGrid.propTypes = {
@@ -20,7 +20,7 @@ export default function ProductsGrid ({isLoading, productsData}) {
     return (
         <div className='products-grid'>
             {isLoading === true
-                ? 'Loading...'
+                ? <Loading />
                 : products}
         </div>
     )
