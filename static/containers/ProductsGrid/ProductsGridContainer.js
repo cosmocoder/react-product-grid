@@ -1,32 +1,43 @@
-import React from 'react'
-import {Product} from 'components'
-import axios from 'axios'
-import ndjson from 'ndjson'
+import React, { PropTypes } from 'react'
+import { ProductsGrid } from 'components'
+import { getProducts } from 'utils/productHelper'
 import './styles.scss'
 
 const ProductsGridContainer = React.createClass({
-    componentDidMount() {
-        axios.get('/api/products?limit=2', {responseType: 'stream'})
-            .then((products) => {
-                const ndjson = products.data.split('\n').slice(0, -1);
-                const json = ndjson.map((item, i) => JSON.parse(item))
-                console.log(json);
-            })
+    propTypes: {
+        limit: PropTypes.number
+    },
+
+    getDefaultProps () {
+        return {
+            limit: 20
+        }
+    },
+
+    getInitialState () {
+        return {
+            isLoading: true,
+            productsData: [],
+            page: 1
+        }
+    },
+
+    componentDidMount () {
+        getProducts(this.props.limit, this.state.page)
+            .then((data) => (
+                this.setState({
+                    isLoading: false,
+                    productsData: data,
+                    page: this.state.page + 1
+                })
+            ))
     },
 
     render () {
         return (
-            <div className="products-grid">
-                <div className="mui-row">
-                    <Product/>
-                    <Product/>
-                    <Product/>
-                    <Product/>
-                    <Product/>
-                </div>
-            </div>
+            <ProductsGrid productsData={this.state.productsData} isLoading={this.state.isLoading} />
         )
-    },
+    }
 })
 
 export default ProductsGridContainer
