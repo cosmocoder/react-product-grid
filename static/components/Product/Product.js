@@ -17,9 +17,9 @@ export default function Product ({face, size, price, date}) {
                     <span style={{fontSize: size}}>{face}</span>
                 </div>
                 <div className='products-item__content'>
-                    <p className='products-item__size'><strong>Size:</strong> {size}</p>
-                    <p className='products-item__price'><strong>Price:</strong> {formatPrice(price)}</p>
-                    <p className='products-item__date'><strong>Date added:</strong> {formatDate(date)}</p>
+                    <p className='products-item__size'><strong>{'Size:'}</strong> {size}</p>
+                    <p className='products-item__price'><strong>{'Price:'}</strong> {formatPrice(price)}</p>
+                    <p className='products-item__date'><strong>{'Date added:'}</strong> {formatDate(date)}</p>
                 </div>
             </div>
         </div>
