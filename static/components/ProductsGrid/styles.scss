@@ -1,6 +1,7 @@
 @import '~styles/utils/variables';
 
-.products-grid .mui-row {
+.products-grid {
     margin-left: -($spacing-half);
     margin-right: -($spacing-half);
+    text-align: center;
 }

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Product } from 'components'
+import './styles.scss'
 
 ProductsGrid.propTypes = {
     isLoading: PropTypes.bool.isRequired,
@@ -20,9 +21,7 @@ export default function ProductsGrid ({isLoading, productsData}) {
         <div className='products-grid'>
             {isLoading === true
                 ? 'Loading...'
-                : <div className='mui-row'>
-                    {products}
-                </div>}
+                : products}
         </div>
     )
 }

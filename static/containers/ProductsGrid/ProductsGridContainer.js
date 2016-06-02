@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import { ProductsGrid } from 'components'
 import { getProducts } from 'utils/productHelper'
-import './styles.scss'
 
 const ProductsGridContainer = React.createClass({
     propTypes: {
