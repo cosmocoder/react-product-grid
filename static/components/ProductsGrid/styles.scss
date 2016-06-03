@@ -3,6 +3,7 @@
 .products-grid {
     position: relative;
     min-height: 200px;
+    padding-bottom: 20px;
     margin-left: -($spacing-half);
     margin-right: -($spacing-half);
     text-align: center;
@@ -12,8 +13,8 @@
         padding-bottom: 100px;
 
         .loader {
-            top: auto;
-            bottom: 0;
+            top: 100%;
+            margin-top: -150px;
         }
     }
 }
