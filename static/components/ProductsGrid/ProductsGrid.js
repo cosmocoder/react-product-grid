@@ -5,10 +5,11 @@ import './styles.scss'
 ProductsGrid.propTypes = {
     isLoading: PropTypes.bool.isRequired,
     isAppending: PropTypes.bool.isRequired,
+    isEnd: PropTypes.bool.isRequired,
     productsData: PropTypes.array.isRequired
 }
 
-export default function ProductsGrid ({isLoading, isAppending, productsData}) {
+export default function ProductsGrid ({isLoading, isAppending, isEnd, productsData}) {
     const products = productsData.map((item) => (
         <Product
             key={item.id}
@@ -18,7 +19,7 @@ export default function ProductsGrid ({isLoading, isAppending, productsData}) {
             date={item.date} />
     ))
 
-    if (isAppending === true) {
+    if (isAppending) {
         return (
             <div className='products-grid isAppending'>
                 {products}
@@ -26,7 +27,15 @@ export default function ProductsGrid ({isLoading, isAppending, productsData}) {
             </div>
         )
     }
-    else if (isLoading === true) {
+    else if (isEnd) {
+        return (
+            <div className='products-grid'>
+                {products}
+                <p className='products-grid__end'>{'~ end of catalogue ~'}</p>
+            </div>
+        )
+    }
+    else if (isLoading) {
         return (
             <div className='products-grid'>
                 <Loading/>

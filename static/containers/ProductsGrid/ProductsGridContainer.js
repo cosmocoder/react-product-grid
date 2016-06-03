@@ -20,7 +20,8 @@ const ProductsGridContainer = React.createClass({
             isLoading: true,
             isAppending: false,
             productsData: [],
-            page: 1
+            page: 1,
+            isEnd: false
         }
     },
 
@@ -35,6 +36,10 @@ const ProductsGridContainer = React.createClass({
     },
 
     handleScroll () {
+        if (this.state.isEnd) {
+            return
+        }
+
         const gridElem = ReactDOM.findDOMNode(this)
 
         if (window.pageYOffset + window.innerHeight >= gridElem.getBoundingClientRect().top + window.pageYOffset + gridElem.clientHeight) {
@@ -46,14 +51,23 @@ const ProductsGridContainer = React.createClass({
 
     makeAPIRequest () {
         getProducts(this.props.limit, this.state.page)
-            .then((data) => (
-                this.setState({
-                    isLoading: false,
-                    isAppending: false,
-                    productsData: this.state.productsData.concat(data),
-                    page: this.state.page + 1
-                })
-            ))
+            .then((data) => {
+                if (!data.length) {
+                    this.setState({
+                        isLoading: false,
+                        isAppending: false,
+                        isEnd: true
+                    })
+                }
+                else {
+                    this.setState({
+                        isLoading: false,
+                        isAppending: false,
+                        productsData: this.state.productsData.concat(data),
+                        page: this.state.page + 1
+                    })
+                }
+            })
     },
 
     render () {
@@ -61,7 +75,8 @@ const ProductsGridContainer = React.createClass({
             <ProductsGrid
                 productsData={this.state.productsData}
                 isLoading={this.state.isLoading}
-                isAppending={this.state.isAppending} />
+                isAppending={this.state.isAppending}
+                isEnd={this.state.isEnd} />
         )
     }
 })

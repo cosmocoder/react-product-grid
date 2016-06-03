@@ -17,4 +17,12 @@
             margin-top: -150px;
         }
     }
+
+    &__end {
+        font-size: 16px;
+        font-weight: 500;
+        color: $color-font-secondary;
+        text-align: center;
+        margin-top: $spacing;
+    }
 }
