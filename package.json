@@ -17,7 +17,8 @@
     "cool-ascii-faces": "^1.3.4",
     "ecstatic": "^1.4.0",
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "throttle-debounce": "^1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",

@@ -6,4 +6,14 @@
     margin-left: -($spacing-half);
     margin-right: -($spacing-half);
     text-align: center;
+    transition: padding 250ms ease-out;
+
+    &.isAppending {
+        padding-bottom: 100px;
+
+        .loader {
+            top: auto;
+            bottom: 0;
+        }
+    }
 }
