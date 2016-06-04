@@ -12,7 +12,7 @@ Product.propTypes = {
 export default function Product ({face, size, price, date}) {
     return (
         <div className='products-item'>
-            <div className='mui-panel'>
+            <div className='mui-panel products-item__panel'>
                 <div className='products-item__media mui--divider-bottom'>
                     <span style={{fontSize: size}}>{face}</span>
                 </div>

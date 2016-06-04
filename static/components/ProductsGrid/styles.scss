@@ -8,6 +8,8 @@
     margin-right: -($spacing-half);
     text-align: center;
     transition: padding 250ms ease-out;
+    display: flex;
+    flex-wrap: wrap;
 
     &.isAppending {
         padding-bottom: 100px;
@@ -24,5 +26,6 @@
         color: $color-font-secondary;
         text-align: center;
         margin-top: $spacing;
+        flex-basis: 100%;
     }
 }
