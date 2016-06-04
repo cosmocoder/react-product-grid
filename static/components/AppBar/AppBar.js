@@ -56,8 +56,8 @@ export default function AppBar ({sortBy, onSortChange}) {
                 <li className='products-menu__sort dropdown-button'>
                     <button className='mui--appbar-line-height ripple-effect'>
                         <span>{'Sort'}</span>
-                        <i className='material-icons right'>{'arrow_drop_down'}</i>
-                        <i className='material-icons icon-sort'>{'sort'}</i>
+                        <i className='material-icons right icon-dropdown'>{'arrow_drop_down'}</i>
+                        <i className='material-icons mui--appbar-line-height icon-sort'>{'sort'}</i>
                     </button>
                     <ul className='dropdown'>
                         {menuItems}

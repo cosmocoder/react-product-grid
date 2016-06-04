@@ -117,13 +117,15 @@
         display: none;
     }
 
-    &.small &__sort {
-        span, .mdi-navigation-arrow-drop-down {
-            display: none;
-        }
+    @media (max-width: 544px) {
+        &__sort {
+            > button span, .icon-dropdown {
+                display: none;
+            }
 
-        .icon-sort {
-            display: block;
+            .icon-sort {
+                display: block;
+            }
         }
     }
 }
