@@ -44,7 +44,7 @@ const ProductsGridContainer = React.createClass({
     },
 
     handleScroll () {
-        if (this.state.isEnd) {
+        if (this.state.isLoading || this.state.isAppending || this.state.isEnd) {
             return
         }
 
