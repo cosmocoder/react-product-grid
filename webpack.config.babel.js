@@ -1,12 +1,13 @@
 import webpack from 'webpack'
 import path from 'path'
 import HTMLWebpackPlugin from 'html-webpack-plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 import pxtorem from 'postcss-pxtorem'
 import mqpacker from 'css-mqpacker'
 
 const LAUNCH_COMMAND = process.env.npm_lifecycle_event
+process.env.BABEL_ENV = LAUNCH_COMMAND
 
 const isProduction = LAUNCH_COMMAND === 'production'
 
@@ -63,6 +64,8 @@ const developmentConfig = {
             }
         },
         port: PORT,
+        contentBase: PATHS.build,
+        hot: true,
         inline: true,
         progress: true
     },
@@ -74,7 +77,7 @@ const developmentConfig = {
         ]
     },
 
-    plugins: [HTMLWebpackPluginConfig]
+    plugins: [HTMLWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()]
 }
 
 const productionConfig = {
