@@ -1,29 +1,66 @@
 import React, { PropTypes } from 'react'
 import './styles.scss'
 
-export default function AppBar (props) {
+const menuData = [
+    {
+        sortBy: '',
+        displayName: 'Original'
+    },
+    {
+        sortBy: 'size',
+        displayName: 'Size'
+    },
+    {
+        sortBy: 'price',
+        displayName: 'Price'
+    },
+    {
+        sortBy: 'id',
+        displayName: 'ID'
+    }
+]
+
+function SortMenuItem ({onSortChange, isActive, sortBy, sortByDisplayName}) {
+    return (
+        <li className={isActive ? 'active' : null}>
+            <button className='ripple-effect' onClick={onSortChange}>{sortByDisplayName}</button>
+        </li>
+    )
+}
+
+SortMenuItem.propTypes = {
+    onSortChange: PropTypes.func.isRequired,
+    isActive: PropTypes.bool.isRequired,
+    sortBy: PropTypes.string.isRequired,
+    sortByDisplayName: PropTypes.string.isRequired
+}
+
+AppBar.propTypes = {
+    sortBy: PropTypes.string.isRequired,
+    onSortChange: PropTypes.func.isRequired
+}
+
+export default function AppBar ({sortBy, onSortChange}) {
+    const menuItems = menuData.map((item) => (
+        <SortMenuItem
+            key={item.displayName}
+            onSortChange={onSortChange.bind(null, item.sortBy)}
+            isActive={sortBy === item.sortBy}
+            sortBy={item.sortBy}
+            sortByDisplayName={item.displayName} />
+    ))
+
     return (
         <div className='mui-appbar products-menu'>
             <ul>
                 <li className='products-menu__sort dropdown-button'>
                     <button className='mui--appbar-line-height ripple-effect'>
-                        <span>Sort</span>
-                        <i className='material-icons right'>arrow_drop_down</i>
-                        <i className='material-icons icon-sort'>sort</i>
+                        <span>{'Sort'}</span>
+                        <i className='material-icons right'>{'arrow_drop_down'}</i>
+                        <i className='material-icons icon-sort'>{'sort'}</i>
                     </button>
                     <ul className='dropdown'>
-                        <li className='active'>
-                            <button className='ripple-effect' data-sort='original'>Original</button>
-                        </li>
-                        <li>
-                            <button className='ripple-effect' data-sort='size'>Size</button>
-                        </li>
-                        <li>
-                            <button className='ripple-effect' data-sort='price'>Price</button>
-                        </li>
-                        <li>
-                            <button className='ripple-effect' data-sort='id'>ID</button>
-                        </li>
+                        {menuItems}
                     </ul>
                 </li>
             </ul>

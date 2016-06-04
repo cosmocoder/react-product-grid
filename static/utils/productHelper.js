@@ -15,8 +15,10 @@ const months = [
     'December'
 ]
 
-export function getProducts (limit, page) {
-    const url = `/api/products?limit=${limit}&skip=${limit * (page - 1)}`
+export function getProducts (sortBy, limit, page) {
+    let url = `/api/products?limit=${limit}&skip=${limit * (page - 1)}`
+    url = sortBy ? `${url}&sort=${sortBy}` : url
+
     return axios.get(url, {responseType: 'stream'})
         .then(({data}) => {
             const ndjson = data.split('\n').slice(0, -1)

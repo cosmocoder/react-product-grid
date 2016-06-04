@@ -6,7 +6,8 @@ import { debounce } from 'throttle-debounce'
 
 const ProductsGridContainer = React.createClass({
     propTypes: {
-        limit: PropTypes.number
+        limit: PropTypes.number,
+        sortBy: PropTypes.string.isRequired
     },
 
     getDefaultProps () {
@@ -31,6 +32,13 @@ const ProductsGridContainer = React.createClass({
         window.addEventListener('scroll', this.handleScroll)
     },
 
+    componentWillReceiveProps (nextProps) {
+        this.setState({
+            productsData: [],
+            page: 1
+        }, () => this.makeAPIRequest())
+    },
+
     componentWillUnmount () {
         window.removeEventListener('scroll', this.handleScroll)
     },
@@ -50,7 +58,7 @@ const ProductsGridContainer = React.createClass({
     },
 
     makeAPIRequest () {
-        getProducts(this.props.limit, this.state.page)
+        getProducts(this.props.sortBy, this.props.limit, this.state.page)
             .then((data) => {
                 if (!data.length) {
                     this.setState({
