@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { Product, Loading } from 'components'
+import { Product, AdItem, Loading } from 'components'
 import './styles.scss'
 
 ProductsGrid.propTypes = {
@@ -12,12 +12,14 @@ ProductsGrid.propTypes = {
 
 export default function ProductsGrid ({isLoading, isAppending, isEnd, productsData}) {
     const products = productsData.map((item) => (
-        <Product
-            key={item.id}
-            price={item.price}
-            size={item.size}
-            face={item.face}
-            date={item.date} />
+        item.ad
+            ? <AdItem key={item.src} src={item.src} />
+            : <Product
+                key={item.id}
+                price={item.price}
+                size={item.size}
+                face={item.face}
+                date={item.date} />
     ))
 
     return (

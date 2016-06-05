@@ -1,4 +1,5 @@
 export AppBar from './AppBar/AppBar'
 export ProductsGrid from './ProductsGrid/ProductsGrid'
 export Product from './Product/Product'
+export AdItem from './AdItem/AdItem'
 export Loading from './Loading/Loading'

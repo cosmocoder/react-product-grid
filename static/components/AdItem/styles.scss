@@ -1,0 +1,16 @@
+.products-item {
+    &--ad {
+        max-width: 350px;   // padding + width of ad image
+    }
+
+    &--ad &__media {
+        height: auto;
+        line-height: 1;
+        margin-bottom: 0;
+
+        img {
+            max-width: 320px;
+            width: 100%;
+        }
+    }
+}

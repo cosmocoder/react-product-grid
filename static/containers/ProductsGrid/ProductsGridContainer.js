@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { ProductsGrid } from 'components'
 import { getProducts } from 'utils/productHelper'
+import getAd from 'utils/adHelper'
 import { debounce } from 'throttle-debounce'
 
 const ProductsGridContainer = React.createClass({
@@ -100,6 +101,7 @@ const ProductsGridContainer = React.createClass({
     makeAPIRequest (isPreloading = false) {
         getProducts(this.props.sortBy, this.props.limit, this.state.page)
             .then((data) => {
+                data = data.length ? data.concat({'ad': true, src: getAd()}) : data
                 this.setState({
                     isLoading: false,
                     isAppending: false,
