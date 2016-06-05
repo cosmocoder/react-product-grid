@@ -20,35 +20,24 @@ export default function ProductsGrid ({isLoading, isAppending, isEnd, productsDa
             date={item.date} />
     ))
 
-    var output = []
-
-    if (isAppending) {
-        output = products.concat(<Loading key='append-loader'/>)
-    }
-    else if (isEnd) {
-        output = products.concat(<p key='end-msg' className='products-grid__end'>{'~ end of catalogue ~'}</p>)
-    }
-    else if (isLoading) {
-        output = <Loading/>
-    }
-    else {
-        output = products
-    }
-
-    const transitionDuration = isLoading || isAppending || isEnd ? 100 : 500
-
     return (
         <div className={isAppending ? 'products-grid isAppending' : 'products-grid'}>
-            {isLoading ? output
+            {isLoading
+                ? <Loading />
                 : <ReactCSSTransitionGroup
-                component='div' className='anim-wrapper'
-                transitionName='itemShow'
-                transitionAppear={true}
-                transitionAppearTimeout={transitionDuration}
-                transitionEnterTimeout={transitionDuration}
-                transitionLeaveTimeout={transitionDuration}>
-                {output}
-            </ReactCSSTransitionGroup>}
+                    component='div' className='anim-wrapper'
+                    transitionName='itemShow'
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}>
+                    {products}
+                </ReactCSSTransitionGroup>}
+
+            {isAppending ? <Loading /> : null}
+            {isEnd
+                ? <p key='end-msg' className='products-grid__end'>{'~ end of catalogue ~'}</p>
+                : null}
         </div>
     )
 }
