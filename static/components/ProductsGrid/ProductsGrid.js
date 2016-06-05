@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Product, Loading } from 'components'
 import './styles.scss'
 
@@ -19,34 +20,35 @@ export default function ProductsGrid ({isLoading, isAppending, isEnd, productsDa
             date={item.date} />
     ))
 
+    var output = []
+
     if (isAppending) {
-        return (
-            <div className='products-grid isAppending'>
-                {products}
-                <Loading />
-            </div>
-        )
+        output = products.concat(<Loading key='append-loader'/>)
     }
     else if (isEnd) {
-        return (
-            <div className='products-grid'>
-                {products}
-                <p className='products-grid__end'>{'~ end of catalogue ~'}</p>
-            </div>
-        )
+        output = products.concat(<p key='end-msg' className='products-grid__end'>{'~ end of catalogue ~'}</p>)
     }
     else if (isLoading) {
-        return (
-            <div className='products-grid'>
-                <Loading/>
-            </div>
-        )
+        output = <Loading/>
     }
     else {
-        return (
-            <div className='products-grid'>
-                {products}
-            </div>
-        )
+        output = products
     }
+
+    const transitionDuration = isLoading || isAppending || isEnd ? 100 : 500
+
+    return (
+        <div className={isAppending ? 'products-grid isAppending' : 'products-grid'}>
+            {isLoading ? output
+                : <ReactCSSTransitionGroup
+                component='div' className='anim-wrapper'
+                transitionName='itemShow'
+                transitionAppear={true}
+                transitionAppearTimeout={transitionDuration}
+                transitionEnterTimeout={transitionDuration}
+                transitionLeaveTimeout={transitionDuration}>
+                {output}
+            </ReactCSSTransitionGroup>}
+        </div>
+    )
 }

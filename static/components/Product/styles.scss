@@ -9,6 +9,39 @@
     text-align: left;
     flex-grow: 1;
     flex-direction: column;
+    transition: all 500ms ease-out;
+
+    &.itemShow-appear {
+        transform: translate3d(0, -20px, 0);
+        opacity: 0;
+        // will-change: transform, opacity;
+
+        &.itemShow-appear-active {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+    }
+
+    &.itemShow-enter {
+        flex-grow: 0.0001;
+        opacity: 0;
+        transform: translate3d(0, 0, 0);
+        // will-change: flex-grow, opacity;
+
+        &.itemShow-enter-active {
+            flex-grow: 1;
+            opacity: 1;
+        }
+    }
+
+    &.itemShow-leave {
+        opacity: 1;
+        // will-change: opacity;
+
+        &.itemShow-leave-active {
+            opacity: 0;
+        }
+    }
 
     &__panel {
         margin-bottom: 0;

@@ -80,7 +80,7 @@ const ProductsGridContainer = React.createClass({
 
         const gridElem = ReactDOM.findDOMNode(this)
 
-        if (window.pageYOffset + window.innerHeight + 300 >= gridElem.getBoundingClientRect().top + window.pageYOffset + gridElem.clientHeight) {
+        if (window.pageYOffset + window.innerHeight + 400 >= gridElem.getBoundingClientRect().top + window.pageYOffset + gridElem.clientHeight) {
             this.isAtBottom = true
 
             if (!this.state.isPreloading && this.state.preloadedData.length) {
@@ -106,10 +106,11 @@ const ProductsGridContainer = React.createClass({
                     isPreloading: false,
                     isEnd: !data.length,
                     page: data.length ? this.state.page + 1 : this.state.page,
-                    productsData: isPreloading && this.isAtBottom ? this.state.productsData.concat(data) : this.state.productsData,
+                    productsData: this.state.isLoading || (isPreloading && this.isAtBottom) ? this.state.productsData.concat(data) : this.state.productsData,
                     preloadedData: isPreloading && !this.isAtBottom ? data : []
                 })
             })
+            .catch((error) => console.warn('Error in loading prducts data', error))
     },
 
     render () {
