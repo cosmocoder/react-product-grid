@@ -11,6 +11,7 @@
     flex-direction: column;
 
     &__panel {
+        margin-bottom: 0;
         transition: box-shadow 200ms ease-in;
 
         &:hover {

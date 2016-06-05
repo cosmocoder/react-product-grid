@@ -7,7 +7,6 @@
     margin-left: -($spacing-half);
     margin-right: -($spacing-half);
     text-align: center;
-    transition: padding 250ms ease-out;
     display: flex;
     flex-wrap: wrap;
 
@@ -16,7 +15,7 @@
 
         .loader {
             top: 100%;
-            margin-top: -150px;
+            margin-top: -100px;
         }
     }
 
