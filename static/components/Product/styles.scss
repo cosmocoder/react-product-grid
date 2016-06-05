@@ -14,7 +14,7 @@
     &.itemShow-appear {
         transform: translate3d(0, -20px, 0);
         opacity: 0;
-        // will-change: transform, opacity;
+        will-change: transform, opacity;
 
         &.itemShow-appear-active {
             transform: translate3d(0, 0, 0);
@@ -26,7 +26,7 @@
         flex-grow: 0.0001;
         opacity: 0;
         transform: translate3d(0, 0, 0);
-        // will-change: flex-grow, opacity;
+        will-change: flex-grow, opacity, transform;
 
         &.itemShow-enter-active {
             flex-grow: 1;
@@ -36,7 +36,7 @@
 
     &.itemShow-leave {
         opacity: 1;
-        // will-change: opacity;
+        will-change: opacity;
 
         &.itemShow-leave-active {
             opacity: 0;
