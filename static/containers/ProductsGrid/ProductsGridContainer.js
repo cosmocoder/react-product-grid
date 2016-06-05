@@ -20,15 +20,20 @@ const ProductsGridContainer = React.createClass({
         return {
             isLoading: true,
             isAppending: false,
+            isPreloading: false,
+            isEnd: false,
             productsData: [],
-            page: 1,
-            isEnd: false
+            preloadedData: [],
+            page: 1
         }
+    },
+
+    componentWillMount () {
+        this.handleScroll = debounce(150, this.handleScroll)
     },
 
     componentDidMount () {
         this.makeAPIRequest()
-        this.handleScroll = debounce(250, this.handleScroll)
         window.addEventListener('scroll', this.handleScroll)
     },
 
@@ -37,6 +42,24 @@ const ProductsGridContainer = React.createClass({
             productsData: [],
             page: 1
         }, () => this.makeAPIRequest())
+    },
+
+    shouldComponentUpdate (nextProps, nextState) {
+        if ((nextState.isLoading !== this.state.isLoading) ||
+            (nextState.isAppending !== this.state.isLoading) ||
+            (nextState.isEnd !== this.state.isEnd) ||
+            (nextState.productsData.length !== this.state.productsData.length)) {
+            return true
+        }
+        else {
+            return false
+        }
+    },
+
+    componentDidUpdate (prevProps, prevState) {
+        if (this.state.productsData.length > prevState.productsData.length) {
+            this.isAtBottom = false
+        }
     },
 
     componentWillUnmount () {
@@ -48,33 +71,44 @@ const ProductsGridContainer = React.createClass({
             return
         }
 
+        if (!this.state.isPreloading && !this.state.preloadedData.length) {
+            this.setState({
+                isPreloading: true
+            })
+            this.makeAPIRequest(true)
+        }
+
         const gridElem = ReactDOM.findDOMNode(this)
 
-        if (window.pageYOffset + window.innerHeight >= gridElem.getBoundingClientRect().top + window.pageYOffset + gridElem.clientHeight) {
-            this.setState({
-                isAppending: true
-            }, () => this.makeAPIRequest())
+        if (window.pageYOffset + window.innerHeight + 300 >= gridElem.getBoundingClientRect().top + window.pageYOffset + gridElem.clientHeight) {
+            this.isAtBottom = true
+
+            if (!this.state.isPreloading && this.state.preloadedData.length) {
+                this.setState({
+                    productsData: this.state.productsData.concat(this.state.preloadedData),
+                    preloadedData: []
+                })
+            }
+            else {
+                this.setState({
+                    isAppending: true
+                })
+            }
         }
     },
 
-    makeAPIRequest () {
+    makeAPIRequest (isPreloading = false) {
         getProducts(this.props.sortBy, this.props.limit, this.state.page)
             .then((data) => {
-                if (!data.length) {
-                    this.setState({
-                        isLoading: false,
-                        isAppending: false,
-                        isEnd: true
-                    })
-                }
-                else {
-                    this.setState({
-                        isLoading: false,
-                        isAppending: false,
-                        productsData: this.state.productsData.concat(data),
-                        page: this.state.page + 1
-                    })
-                }
+                this.setState({
+                    isLoading: false,
+                    isAppending: false,
+                    isPreloading: false,
+                    isEnd: !data.length,
+                    page: data.length ? this.state.page + 1 : this.state.page,
+                    productsData: isPreloading && this.isAtBottom ? this.state.productsData.concat(data) : this.state.productsData,
+                    preloadedData: isPreloading && !this.isAtBottom ? data : []
+                })
             })
     },
 
