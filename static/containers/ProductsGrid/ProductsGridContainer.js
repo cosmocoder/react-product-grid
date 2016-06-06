@@ -8,8 +8,14 @@ import { debounce } from 'throttle-debounce'
 
 const ProductsGridContainer = React.createClass({
     propTypes: {
+
+        // distance from the bottom of the grid at which to start inserting new items
         threshold: PropTypes.number,
+
+        // number of items to get in each call to the api
         limit: PropTypes.number,
+
+        // the parameter to sort items by
         sortBy: PropTypes.string.isRequired
     },
 
@@ -70,6 +76,7 @@ const ProductsGridContainer = React.createClass({
             return
         }
 
+        // start preloading the next batch of products data
         if (!this.state.isPreloading && !this.state.preloadedData.length) {
             this.setState({
                 isPreloading: true
@@ -77,16 +84,20 @@ const ProductsGridContainer = React.createClass({
             this.makeAPIRequest(true)
         }
 
+        // when the bottom threshold is reached
         if (window.innerHeight + this.props.threshold >=
             this.gridElem.getBoundingClientRect().top + this.gridElem.clientHeight) {
             this.isAtBottom = true
 
+            // append new items if the data is already available
             if (!this.state.isPreloading && this.state.preloadedData.length) {
                 this.setState({
                     productsData: this.state.productsData.concat(this.state.preloadedData),
                     preloadedData: []
                 })
             }
+
+            // else show the loading spinner
             else {
                 this.setState({
                     isAppending: true
@@ -98,7 +109,10 @@ const ProductsGridContainer = React.createClass({
     makeAPIRequest (isPreloading = false) {
         getProducts(this.props.sortBy, this.props.limit, this.state.page)
             .then((data) => {
+
+                // add an advertisement with each batch of products
                 data = data.length ? data.concat({'ad': true, src: getAd()}) : data
+
                 this.setState({
                     isLoading: false,
                     isAppending: false,
