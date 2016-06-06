@@ -15,6 +15,13 @@ const months = [
     'December'
 ]
 
+/**
+ * Make ajax call to get products data from api
+ * @param {string} sortBy - the sorting parameter
+ * @param {number} limit - number of products to get
+ * @param {number} page - used for determining the next batch of products to get
+ * @return {Object} Promise object
+ */
 export function getProducts (sortBy, limit, page) {
     let url = `/api/products?limit=${limit}&skip=${limit * (page - 1)}`
     url = sortBy ? `${url}&sort=${sortBy}` : url
@@ -27,10 +34,20 @@ export function getProducts (sortBy, limit, page) {
         })
 }
 
+/**
+ * Format price in cents as dollars with two decimal places
+ * @param {number} priceInCents
+ * @return {string}
+ */
 export function formatPrice (priceInCents) {
     return '$' + (priceInCents / 100).toFixed(2)
 }
 
+/**
+ * Format a ISO date string into a relative time if older than 1 week, else human readable full date
+ * @param {string} dateString - the ISO date string
+ * @return {string}
+ */
 export function formatDate (dateString) {
     const msPerMinute = 60 * 1000
     const msPerHour = msPerMinute * 60

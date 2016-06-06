@@ -1,5 +1,8 @@
 var lastAdID
 
+/**
+ * Randomly generate new ad but ensure that the same ad doesn't get generated twice in a row
+ */
 export default function getAd () {
     let newAdID = 0
 
