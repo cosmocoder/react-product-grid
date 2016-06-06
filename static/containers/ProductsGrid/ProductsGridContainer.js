@@ -41,6 +41,8 @@ const ProductsGridContainer = React.createClass({
 
     componentWillReceiveProps (nextProps) {
         this.setState({
+            isLoading: true,
+            isEnd: false,
             productsData: [],
             page: 1
         }, () => this.makeAPIRequest())
