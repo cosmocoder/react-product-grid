@@ -1,27 +1,5 @@
 //-------------------------------------//
 
-// GRID
-
-$grid-gutter: 30px;
-
-
-//-------------------------------------//
-
-// DIMENSIONS
-
-// screen sizes
-$width-lg: 1200px;
-$width-md: 992px;
-$width-sm: 768px;
-$width-xs: 480px;
-
-// navmenu height
-$height-navmenu: 50px;
-$border-width-navmenu: 1px;
-
-
-//-------------------------------------//
-
 // SPACING
 
 $spacing: 20px;
@@ -53,6 +31,6 @@ $font-bold: 700;
 $color-font-base: #424242;
 $color-font-secondary: #757575;
 
-// colors: primary
+// colors: product menu bar
 $color-gallery-menu: #039BE5;  // blue
 $color-gallery-menu-hover: darken($color-gallery-menu, 10%);  // blue

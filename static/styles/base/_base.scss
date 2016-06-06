@@ -10,18 +10,3 @@ img {
    max-width: 100%;
    height: auto;
 }
-
-section {
-    figure {
-        margin-bottom: $spacing;
-
-        figcaption {
-            display: block;
-            margin-bottom: $spacing-half;
-        }
-
-        img {
-            width: 100%;
-        }
-    }
-}
