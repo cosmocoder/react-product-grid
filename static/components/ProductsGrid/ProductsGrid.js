@@ -11,9 +11,9 @@ ProductsGrid.propTypes = {
 }
 
 export default function ProductsGrid ({isLoading, isAppending, isEnd, productsData}) {
-    const products = productsData.map((item) => (
+    const products = productsData.map((item, i) => (
         item.ad
-            ? <AdItem key={item.src} src={item.src} />
+            ? <AdItem key={i + '-ad'} src={item.src} />
             : <Product
                 key={item.id}
                 price={item.price}
@@ -23,7 +23,7 @@ export default function ProductsGrid ({isLoading, isAppending, isEnd, productsDa
     ))
 
     return (
-        <div className={isAppending ? 'products-grid isAppending' : 'products-grid'}>
+        <div className={'products-grid' + (isAppending ? ' isAppending' : '')}>
             {isLoading
                 ? <Loading />
                 : <ReactCSSTransitionGroup
