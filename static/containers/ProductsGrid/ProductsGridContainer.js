@@ -109,7 +109,6 @@ const ProductsGridContainer = React.createClass({
     makeAPIRequest (isPreloading = false) {
         getProducts(this.props.sortBy, this.props.limit, this.state.page)
             .then((data) => {
-
                 // add an advertisement with each batch of products
                 data = data.length ? data.concat({'ad': true, src: getAd()}) : data
 
