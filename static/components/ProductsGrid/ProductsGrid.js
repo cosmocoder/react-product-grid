@@ -41,15 +41,10 @@ ProductsGrid.propTypes = {
 
 export default function ProductsGrid ({isLoading, isAppending, isEnd, productsData}) {
     return (
-        <div className={'products-grid' + (isAppending ? ' isAppending' : '')}>
-            {isLoading
-                ? <Loading />
-                : <ProductsList productsData={productsData} />}
-
-            {isAppending ? <Loading /> : null}
-            {isEnd
-                ? <p className='products-grid__end'>{'~ end of catalogue ~'}</p>
-                : null}
+        <div className={'products-grid' + (isLoading ? ' isLoading' : '') + (isAppending ? ' isAppending' : '')}>
+            <Loading />
+            {!isLoading ? <ProductsList productsData={productsData} /> : null}
+            {isEnd ? <p className='products-grid__end'>{'~ end of catalogue ~'}</p> : null}
         </div>
     )
 }

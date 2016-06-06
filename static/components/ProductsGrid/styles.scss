@@ -10,6 +10,12 @@
     display: flex;
     flex-wrap: wrap;
 
+    &.isLoading, &.isAppending {
+        .loader {
+            display: block;
+        }
+    }
+
     &.isAppending {
         padding-bottom: 100px;
 
