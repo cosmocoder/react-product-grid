@@ -8,12 +8,14 @@ import { debounce } from 'throttle-debounce'
 
 const ProductsGridContainer = React.createClass({
     propTypes: {
+        threshold: PropTypes.number,
         limit: PropTypes.number,
         sortBy: PropTypes.string.isRequired
     },
 
     getDefaultProps () {
         return {
+            threshold: 500,
             limit: 20
         }
     },
@@ -35,6 +37,7 @@ const ProductsGridContainer = React.createClass({
     },
 
     componentDidMount () {
+        this.gridElem = ReactDOM.findDOMNode(this)
         this.makeAPIRequest()
         window.addEventListener('scroll', this.handleScroll)
     },
@@ -74,9 +77,8 @@ const ProductsGridContainer = React.createClass({
             this.makeAPIRequest(true)
         }
 
-        const gridElem = ReactDOM.findDOMNode(this)
-
-        if (window.pageYOffset + window.innerHeight + 400 >= gridElem.getBoundingClientRect().top + window.pageYOffset + gridElem.clientHeight) {
+        if (window.innerHeight + this.props.threshold >=
+            this.gridElem.getBoundingClientRect().top + this.gridElem.clientHeight) {
             this.isAtBottom = true
 
             if (!this.state.isPreloading && this.state.preloadedData.length) {
