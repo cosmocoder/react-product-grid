@@ -7,8 +7,8 @@
   "scripts": {
     "start": "node . & webpack-dev-server",
     "production": "webpack -p",
-    "lint": "eslint app/.; exit 0",
-    "fix": "eslint --fix app/.; exit 0"
+    "lint": "eslint static/.; exit 0",
+    "fix": "eslint --fix static/.; exit 0"
   },
   "author": "",
   "license": "",
