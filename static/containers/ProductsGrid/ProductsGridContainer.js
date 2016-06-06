@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
+import shallowCompare from 'react-addons-shallow-compare'
 import { ProductsGrid } from 'components'
 import { getProducts } from 'utils/productHelper'
 import getAd from 'utils/adHelper'
@@ -46,15 +47,7 @@ const ProductsGridContainer = React.createClass({
     },
 
     shouldComponentUpdate (nextProps, nextState) {
-        if ((nextState.isLoading !== this.state.isLoading) ||
-            (nextState.isAppending !== this.state.isLoading) ||
-            (nextState.isEnd !== this.state.isEnd) ||
-            (nextState.productsData.length !== this.state.productsData.length)) {
-            return true
-        }
-        else {
-            return false
-        }
+        return shallowCompare(this, nextProps, nextState)
     },
 
     componentDidUpdate (prevProps, prevState) {
