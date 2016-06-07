@@ -17,7 +17,7 @@ const PATHS = {
     build: path.join(__dirname, 'dist')
 }
 
-const PORT = process.env.PORT ? (process.env.PORT + 1) : 8080
+const PORT = (process.env.PORT + 1) || 8080
 
 const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     template: PATHS.app + '/index.html',
