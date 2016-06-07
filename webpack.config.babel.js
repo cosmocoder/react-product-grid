@@ -5,6 +5,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 import pxtorem from 'postcss-pxtorem'
 import mqpacker from 'css-mqpacker'
+import cssnano from 'cssnano'
 
 const LAUNCH_COMMAND = process.env.npm_lifecycle_event
 process.env.BABEL_ENV = LAUNCH_COMMAND
@@ -16,7 +17,7 @@ const PATHS = {
     build: path.join(__dirname, 'dist')
 }
 
-const PORT = (process.env.PORT + 1) || 8080
+const PORT = process.env.PORT ? (process.env.PORT + 1) : 8080
 
 const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     template: PATHS.app + '/index.html',
@@ -32,9 +33,17 @@ const productionPlugin = new webpack.DefinePlugin({
     }
 })
 
+const UglifyJsPluginConfig = new webpack.optimize.UglifyJsPlugin({
+    compress: {
+        warnings: false,
+        screw_ie8: true
+    },
+    comments: false
+})
+
 const base = {
     entry: [
-        PATHS.app + '/index.js'
+        PATHS.app
     ],
 
     output: {
@@ -55,7 +64,7 @@ const base = {
 }
 
 const developmentConfig = {
-    devTool: 'cheap-inline-source-map',
+    devTool: 'cheap-module-inline-source-map',
 
     devServer: {
         proxy: {
@@ -81,17 +90,29 @@ const developmentConfig = {
 }
 
 const productionConfig = {
-    devTool: 'cheap-source-map',
+    devTool: 'cheap-module-source-map',
+
+    module: {
+        loaders: [
+            {test: /\.js$/, exclude: /node_modules/, loader: 'babel'},
+            {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap&importLoaders!postcss?sourceMap!sass?sourceMap')}
+        ]
+    },
 
     postcss: function () {
         return [
             autoprefixer({browsers: 'safari >= 6, ie >= 9'}),
             pxtorem({replace: false, rootValue: 14}),
-            mqpacker
+            mqpacker,
+            cssnano({
+                discardComments: {
+                    removeAll: true
+                }
+            })
         ]
     },
 
-    plugins: [HTMLWebpackPluginConfig, ExtractTextPluginConfig, productionPlugin]
+    plugins: [HTMLWebpackPluginConfig, UglifyJsPluginConfig, ExtractTextPluginConfig, productionPlugin]
 }
 
 export default Object.assign({}, base, isProduction ? productionConfig : developmentConfig)
