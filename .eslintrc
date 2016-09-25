@@ -2,7 +2,12 @@
     parser: "babel-eslint",
     env: {
         es6: true,
-        browser: true
+        browser: true,
+        node: true,
+        mocha: true
+    },
+    globals: {
+        expect: true
     },
     parserOptions: {
         ecmaversion: 6,
@@ -16,8 +21,9 @@
     plugins: [
         "react"
     ],
-    "rules": {
+    rules: {
         "no-console": [2, {allow: ["warn", "error"]}],
+        "no-labels": 0,
         "indent": [2, 4, {"SwitchCase": 1}],
         "brace-style": [2, "stroustrup"],
         "jsx-quotes": [2, "prefer-single"],
